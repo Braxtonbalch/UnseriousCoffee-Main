@@ -293,7 +293,13 @@ function App() {
               <div className="social-content">
                 <div className="social-links smooth-reveal">
                   <div className="social-grid">
-                    <a href="#" className="social-link">
+                    <a 
+                      href="https://www.instagram.com/unseriouscoffee/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="social-link"
+                      aria-label="Follow us on Instagram"
+                    >
                       <img src="/instagram QR code.png" alt="Instagram QR Code" className="social-qr-code" />
                       <span>Instagram</span>
                     </a>

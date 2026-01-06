@@ -731,20 +731,27 @@ body {
   color: var(--gray-200);
   font-weight: 600;
   border: 2px solid transparent;
+  cursor: pointer;
   transition: transform var(--duration-normal) var(--ease-standard),
               box-shadow var(--duration-normal) var(--ease-standard),
               border-color var(--duration-normal) var(--ease-standard),
               background-color var(--duration-normal) var(--ease-standard),
               color var(--duration-normal) var(--ease-standard);
   will-change: transform, box-shadow;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .social-link:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) scale(1.02);
   box-shadow: 0 12px 24px var(--amber-glow);
   border-color: var(--amber);
   background: rgba(245, 158, 11, 0.1);
   color: var(--amber);
+}
+
+.social-link:active {
+  transform: translateY(-2px) scale(0.98);
 }
 
 .social-icon {
@@ -752,10 +759,17 @@ body {
 }
 
 .social-qr-code {
-  width: 40px;
-  height: 40px;
+  width: 200px;
+  height: 200px;
+  max-width: 100%;
   object-fit: contain;
   display: block;
+  border-radius: 8px;
+  transition: transform var(--duration-normal) var(--ease-standard);
+}
+
+.social-link:hover .social-qr-code {
+  transform: scale(1.05);
 }
 
 .email-contact {
