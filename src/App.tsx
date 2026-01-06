@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import './App.css';
 
-type Page = 'home' | 'menu' | 'find-us' | 'about';
+type Page = 'home' | 'menu' | 'find-us' | 'about' | 'merchandise';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -136,6 +136,51 @@ function App() {
     { day: 'Sunday', location: 'St. Andrews', time: '9:00 AM - 1:00 PM', status: 'Open' },
   ];
 
+  const merchandiseItems = [
+    { 
+      name: 'Unserious Coffee T-Shirt', 
+      description: 'Show off your unserious vibes with our signature tee', 
+      price: '$25.00',
+      category: 'Apparel',
+      featured: true
+    },
+    { 
+      name: 'Coffee Skeleton Sticker Pack', 
+      description: 'Stick these bad boys anywhere that needs more personality', 
+      price: '$8.00',
+      category: 'Accessories',
+      featured: true
+    },
+    { 
+      name: 'Unserious Coffee Mug', 
+      description: 'Perfect for your morning existential crisis (and coffee)', 
+      price: '$18.00',
+      category: 'Accessories',
+      featured: false
+    },
+    { 
+      name: 'Hoodie - "Don\'t Take Life Too Seriously"', 
+      description: 'Cozy up in comfort while staying unserious', 
+      price: '$45.00',
+      category: 'Apparel',
+      featured: false
+    },
+    { 
+      name: 'Logo Hat', 
+      description: 'Keep it casual, keep it unserious', 
+      price: '$22.00',
+      category: 'Accessories',
+      featured: false
+    },
+    { 
+      name: 'Tote Bag', 
+      description: 'Carry your stuff (and your attitude) in style', 
+      price: '$15.00',
+      category: 'Accessories',
+      featured: false
+    },
+  ];
+
   return (
     <div className="App">
       {/* Navigation */}
@@ -168,6 +213,12 @@ function App() {
               onClick={() => setCurrentPage('about')}
             >
               About
+            </button>
+            <button 
+              className={`nav-link ${currentPage === 'merchandise' ? 'active' : ''}`}
+              onClick={() => setCurrentPage('merchandise')}
+            >
+              Merchandise
             </button>
           </div>
         </div>
@@ -386,6 +437,47 @@ function App() {
                   {content.aboutText}
                 </p>
               </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {currentPage === 'merchandise' && (
+        <section className="merchandise-page">
+          <div className="container">
+            <div className="section-header smooth-reveal">
+              <h2>Merchandise</h2>
+              <p className="section-subtitle">Wear your unserious vibes (or stick them on your laptop)</p>
+            </div>
+            
+            <div className="merchandise-intro">
+              <p>Support the cause and rep the brand. All proceeds go toward making our coffee dreams a reality (and maybe buying more coffee equipment).</p>
+            </div>
+
+            <div className="merchandise-grid smooth-reveal-stagger">
+              {merchandiseItems.map((item, index) => (
+                <div key={index} className={`merchandise-item ${item.featured ? 'featured' : ''}`}>
+                  {item.featured && <div className="featured-glow"></div>}
+                  <div className="merchandise-item-content">
+                    <div className="merchandise-image-placeholder">
+                      <span className="merchandise-icon">
+                        {item.category === 'Apparel' ? '👕' : '🎁'}
+                      </span>
+                    </div>
+                    <div className="merchandise-category">{item.category}</div>
+                    <h4>{item.name}</h4>
+                    <p>{item.description}</p>
+                    <div className="merchandise-footer">
+                      <span className="price">{item.price}</span>
+                      <button className="merchandise-button">Coming Soon</button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="merchandise-note">
+              <p>💡 <strong>Coming Soon:</strong> We're working on getting our merch store up and running. In the meantime, follow us on social media for updates and maybe we'll have some pop-up merch at our trailer!</p>
             </div>
           </div>
         </section>
