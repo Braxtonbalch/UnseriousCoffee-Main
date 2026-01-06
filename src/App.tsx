@@ -325,11 +325,15 @@ function App() {
                     </a>
                   </div>
                   <div className="email-contact">
-                    <p>
+                    <div className="email-block">
                       <a href="mailto:UnseriousCoffee@gmail.com" className="email-link">
-                        📧 UnseriousCoffee@gmail.com
+                        <div className="email-row">
+                          <span className="email-icon">📧</span>
+                          <span className="email-address">UnseriousCoffee@gmail.com</span>
+                        </div>
+                        <p className="email-tagline">Got questions or collabs?</p>
                       </a>
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>

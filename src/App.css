@@ -791,26 +791,65 @@ body {
 }
 
 .email-contact {
-  margin-top: 2rem;
-  text-align: center;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.email-contact p {
-  font-size: 1.1rem;
-  color: var(--gray-300);
-  font-weight: 500;
-  margin: 0;
+.email-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .email-link {
-  color: var(--amber);
   text-decoration: none;
-  transition: all 0.3s ease;
+  color: inherit;
+  transition: opacity var(--duration-normal) var(--ease-standard);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .email-link:hover {
-  color: var(--amber-light);
-  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.email-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.email-icon {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.email-address {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--gray-200);
+  transition: color var(--duration-normal) var(--ease-standard);
+}
+
+.email-link:hover .email-address {
+  color: var(--amber);
+}
+
+.email-tagline {
+  font-size: 0.9rem;
+  color: var(--gray-400);
+  font-style: italic;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.4;
 }
 
 /* Menu Page */
@@ -1525,6 +1564,18 @@ body {
     max-width: 180px;
     max-height: 180px;
     font-size: 180px;
+  }
+
+  .email-address {
+    font-size: 1rem;
+  }
+
+  .email-icon {
+    font-size: 1.25rem;
+  }
+
+  .email-tagline {
+    font-size: 0.8rem;
   }
 }
 
