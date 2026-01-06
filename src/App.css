@@ -1368,6 +1368,27 @@ body {
 }
 
 /* Responsive Design */
+/* Mobile: Hide header logo (max-width: 767px) */
+@media (max-width: 767px) {
+  /* Hide header logo on mobile - completely removed from layout flow */
+  .nav-logo {
+    display: none !important;
+  }
+
+  /* Ensure nav container centers properly without logo */
+  .nav-container {
+    justify-content: center;
+    padding: 0 15px;
+  }
+}
+
+/* Tablet & Desktop: Show header logo (min-width: 768px) */
+@media (min-width: 768px) {
+  .nav-logo {
+    display: flex;
+  }
+}
+
 @media (max-width: 768px) {
   .nav-links {
     gap: 1rem;
