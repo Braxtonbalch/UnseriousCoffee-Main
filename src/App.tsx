@@ -301,7 +301,6 @@ function App() {
                       aria-label="Follow us on Instagram"
                     >
                       <img src="/instagram QR code.png" alt="Instagram QR Code" className="social-qr-code" />
-                      <span>Instagram</span>
                     </a>
                     <a href="#" className="social-link">
                       <span className="social-icon">🐦</span>
@@ -319,7 +318,6 @@ function App() {
                       aria-label="Follow us on Facebook"
                     >
                       <img src="/Facebook QR code.png" alt="Facebook QR Code" className="social-qr-code" />
-                      <span>Facebook</span>
                     </a>
                   </div>
                   <div className="email-contact">
