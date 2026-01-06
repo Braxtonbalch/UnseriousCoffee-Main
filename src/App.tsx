@@ -311,8 +311,16 @@ function App() {
                       <span className="social-icon">🎵</span>
                       <span>TikTok</span>
                     </a>
-                    <a href="#" className="social-link">
-                      <span className="social-icon">📘</span>
+                    <a href="#" className="social-link" aria-label="Follow us on Facebook">
+                      <img 
+                        src="/Facebook QR code.png" 
+                        alt="Facebook QR Code" 
+                        className="social-qr-code"
+                        loading="lazy"
+                        decoding="async"
+                        width="200"
+                        height="200"
+                      />
                       <span>Facebook</span>
                     </a>
                   </div>
