@@ -714,7 +714,7 @@ body {
 
 .social-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
@@ -742,6 +742,7 @@ body {
   -webkit-tap-highlight-color: transparent;
   overflow: hidden;
   min-height: 250px;
+  width: 100%;
 }
 
 .social-link:hover {
@@ -757,7 +758,10 @@ body {
 }
 
 .social-icon {
-  font-size: 1.5rem;
+  font-size: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .social-qr-code {
@@ -1460,6 +1464,11 @@ body {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .social-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1490,6 +1499,11 @@ body {
 
   .skeleton-head {
     font-size: 3rem;
+  }
+
+  .social-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 

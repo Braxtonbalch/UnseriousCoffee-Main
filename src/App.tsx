@@ -302,14 +302,6 @@ function App() {
                     >
                       <img src="/instagram QR code.png" alt="Instagram QR Code" className="social-qr-code" />
                     </a>
-                    <a href="#" className="social-link">
-                      <span className="social-icon">🐦</span>
-                      <span>X (Twitter)</span>
-                    </a>
-                    <a href="#" className="social-link">
-                      <span className="social-icon">🎵</span>
-                      <span>TikTok</span>
-                    </a>
                     <a 
                       href="https://www.facebook.com/profile.php?id=61579091281417" 
                       target="_blank" 
@@ -318,6 +310,9 @@ function App() {
                       aria-label="Follow us on Facebook"
                     >
                       <img src="/Facebook QR code.png" alt="Facebook QR Code" className="social-qr-code" />
+                    </a>
+                    <a href="#" className="social-link" aria-label="Follow us on TikTok">
+                      <span className="social-icon">🎵</span>
                     </a>
                   </div>
                   <div className="email-contact">
