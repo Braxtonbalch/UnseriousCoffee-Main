@@ -715,8 +715,13 @@ body {
 .social-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: 2rem;
   margin-bottom: 2rem;
+  justify-items: center;
+  align-items: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .social-link {
@@ -724,44 +729,46 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0;
-  padding: 2rem;
-  background: var(--charcoal);
-  border-radius: 12px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
   text-decoration: none;
   color: var(--gray-200);
   font-weight: 600;
-  border: 2px solid transparent;
+  border: none;
   cursor: pointer;
-  transition: transform var(--duration-normal) var(--ease-standard),
-              box-shadow var(--duration-normal) var(--ease-standard),
-              border-color var(--duration-normal) var(--ease-standard),
-              background-color var(--duration-normal) var(--ease-standard),
-              color var(--duration-normal) var(--ease-standard);
-  will-change: transform, box-shadow;
+  transition: opacity var(--duration-normal) var(--ease-standard);
+  will-change: opacity;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-  overflow: hidden;
-  min-height: 250px;
-  width: 100%;
+  overflow: visible;
+  min-height: auto;
+  width: auto;
 }
 
 .social-link:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 12px 24px var(--amber-glow);
-  border-color: var(--amber);
-  background: rgba(245, 158, 11, 0.1);
-  color: var(--amber);
+  opacity: 0.85;
 }
 
 .social-link:active {
-  transform: translateY(-2px) scale(0.98);
+  opacity: 0.7;
 }
 
 .social-icon {
-  font-size: 4rem;
+  font-size: 200px;
+  width: 200px;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform var(--duration-normal) var(--ease-standard),
+              opacity var(--duration-normal) var(--ease-standard);
+  cursor: pointer;
+}
+
+.social-link:hover .social-icon {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
 .social-qr-code {
@@ -772,12 +779,15 @@ body {
   object-fit: contain;
   display: block;
   border-radius: 8px;
-  transition: transform var(--duration-normal) var(--ease-standard);
+  transition: transform var(--duration-normal) var(--ease-standard),
+              opacity var(--duration-normal) var(--ease-standard);
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .social-link:hover .social-qr-code {
   transform: scale(1.05);
+  opacity: 0.9;
 }
 
 .email-contact {
@@ -1467,7 +1477,8 @@ body {
 
   .social-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
+    gap: 1.5rem;
+    max-width: 600px;
   }
 }
 
@@ -1503,7 +1514,17 @@ body {
 
   .social-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 2rem;
+    max-width: 300px;
+  }
+
+  .social-qr-code,
+  .social-icon {
+    width: 180px;
+    height: 180px;
+    max-width: 180px;
+    max-height: 180px;
+    font-size: 180px;
   }
 }
 
