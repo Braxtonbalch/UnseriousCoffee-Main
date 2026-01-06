@@ -311,6 +311,15 @@ function App() {
                     >
                       <img src="/Facebook QR code.png" alt="Facebook QR Code" className="social-qr-code" />
                     </a>
+                    <a 
+                      href="https://open.spotify.com/playlist/1c1OdnwDuud43tAQGX2OBh?si=ede4e3f1ad5f4b64" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="social-link"
+                      aria-label="Listen to our Spotify playlist"
+                    >
+                      <img src="/Spotify QR code.png" alt="Spotify QR Code" className="social-qr-code" />
+                    </a>
                     <a href="#" className="social-link" aria-label="Follow us on TikTok">
                       <span className="social-icon">🎵</span>
                     </a>
