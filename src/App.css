@@ -1517,7 +1517,15 @@ body {
   .social-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-    max-width: 600px;
+    max-width: 500px;
+  }
+
+  .email-address {
+    font-size: 1.1rem;
+  }
+
+  .email-tagline {
+    font-size: 0.85rem;
   }
 }
 
