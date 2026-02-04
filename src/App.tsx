@@ -148,10 +148,7 @@ function App() {
     if (formData.notes) formDataToSubmit.append('message', formData.notes);
 
     try {
-      // TODO: Replace with your Formspree endpoint URL
-      // Get your endpoint from: https://formspree.io/forms
-      // Format: https://formspree.io/f/YOUR_FORM_ID
-      const FORMPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+      const FORMPREE_ENDPOINT = 'https://formspree.io/f/mpqjaadj';
       
       // Check if endpoint is still placeholder - use mailto fallback
       if (FORMPREE_ENDPOINT.includes('YOUR_FORM_ID')) {
@@ -812,7 +809,7 @@ function App() {
                 className="popup-request-form smooth-reveal" 
                 onSubmit={handleFormSubmit}
                 method="POST"
-                action="https://formspree.io/f/YOUR_FORM_ID"
+                action="https://formspree.io/f/mpqjaadj"
               >
                 <div className="form-row">
                   <div className="form-group">
