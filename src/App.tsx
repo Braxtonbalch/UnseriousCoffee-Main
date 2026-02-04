@@ -19,7 +19,7 @@ function App() {
     attendance: '',
     notes: ''
   });
-  const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const defaultContent = {
     heroTagline: "The grind sucks. Our coffee doesn't.",
@@ -120,53 +120,91 @@ function App() {
     };
   }, []);
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Client-side validation
     if (!formData.name || !formData.email || !formData.eventType || !formData.dateTime || !formData.location) {
       setFormStatus('error');
+      // Clear error message after 5 seconds
+      setTimeout(() => {
+        setFormStatus(prev => prev === 'error' ? 'idle' : prev);
+      }, 5000);
       return;
     }
 
-    // Create mailto link with form data
-    const subject = encodeURIComponent(`Pop-Up Request: ${formData.eventType}`);
-    const body = encodeURIComponent(
-      `Pop-Up Request Form Submission\n\n` +
-      `Name: ${formData.name}\n` +
-      `Organization/Brokerage/Business: ${formData.organization || 'N/A'}\n` +
-      `Email: ${formData.email}\n` +
-      `Phone: ${formData.phone || 'N/A'}\n` +
-      `Event Type: ${formData.eventType}\n` +
-      `Date/Time: ${formData.dateTime}\n` +
-      `Location: ${formData.location}\n` +
-      `Expected Attendance: ${formData.attendance || 'N/A'}\n` +
-      `Notes: ${formData.notes || 'N/A'}`
-    );
-    
-    window.location.href = `mailto:UnseriousCoffee@gmail.com?subject=${subject}&body=${body}`;
-    setFormStatus('success');
-    
-    // Reset form after a delay
-    setTimeout(() => {
-      setFormData({
-        name: '',
-        organization: '',
-        email: '',
-        phone: '',
-        eventType: '',
-        dateTime: '',
-        location: '',
-        attendance: '',
-        notes: ''
+    setFormStatus('loading');
+
+    // Prepare FormData for Formspree
+    const formDataToSubmit = new FormData();
+    formDataToSubmit.append('name', formData.name);
+    formDataToSubmit.append('email', formData.email); // Required for Formspree autoresponse
+    if (formData.organization) formDataToSubmit.append('organization', formData.organization);
+    if (formData.phone) formDataToSubmit.append('phone', formData.phone);
+    formDataToSubmit.append('event_type', formData.eventType);
+    formDataToSubmit.append('event_date', formData.dateTime);
+    formDataToSubmit.append('location', formData.location);
+    if (formData.attendance) formDataToSubmit.append('attendance', formData.attendance);
+    if (formData.notes) formDataToSubmit.append('message', formData.notes);
+
+    try {
+      // TODO: Replace with your Formspree endpoint URL
+      // Get your endpoint from: https://formspree.io/forms
+      // Format: https://formspree.io/f/YOUR_FORM_ID
+      const FORMPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+      
+      const response = await fetch(FORMPREE_ENDPOINT, {
+        method: 'POST',
+        body: formDataToSubmit,
+        headers: {
+          'Accept': 'application/json'
+        }
       });
-      setFormStatus('idle');
-    }, 3000);
+
+      if (response.ok) {
+        setFormStatus('success');
+        // Clear form on success
+        setFormData({
+          name: '',
+          organization: '',
+          email: '',
+          phone: '',
+          eventType: '',
+          dateTime: '',
+          location: '',
+          attendance: '',
+          notes: ''
+        });
+        // Clear success message after 10 seconds
+        setTimeout(() => {
+          setFormStatus(prev => prev === 'success' ? 'idle' : prev);
+        }, 10000);
+      } else {
+        setFormStatus('error');
+        // Clear error message after 5 seconds
+        setTimeout(() => {
+          setFormStatus(prev => prev === 'error' ? 'idle' : prev);
+        }, 5000);
+      }
+    } catch (error) {
+      setFormStatus('error');
+      // Clear error message after 5 seconds
+      setTimeout(() => {
+        setFormStatus(prev => prev === 'error' ? 'idle' : prev);
+      }, 5000);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    // Map form name attributes to state keys
+    const stateKeyMap: Record<string, keyof typeof formData> = {
+      'event_type': 'eventType',
+      'event_date': 'dateTime',
+      'message': 'notes'
+    };
+    const stateKey = stateKeyMap[name] || name;
+    setFormData(prev => ({ ...prev, [stateKey]: value }));
   };
 
   const toggleFaq = (index: number) => {
@@ -731,7 +769,12 @@ function App() {
                 <h2>Request a Pop-Up</h2>
                 <p className="section-subtitle">Let's make your event unforgettable</p>
               </div>
-              <form className="popup-request-form smooth-reveal" onSubmit={handleFormSubmit}>
+              <form 
+                className="popup-request-form smooth-reveal" 
+                onSubmit={handleFormSubmit}
+                method="POST"
+                action="https://formspree.io/f/YOUR_FORM_ID"
+              >
                 <div className="form-row">
                   <div className="form-group">
                     <label htmlFor="name">Name *</label>
@@ -785,7 +828,7 @@ function App() {
                     <label htmlFor="eventType">Event Type *</label>
                     <select
                       id="eventType"
-                      name="eventType"
+                      name="event_type"
                       value={formData.eventType}
                       onChange={handleInputChange}
                       required
@@ -805,7 +848,7 @@ function App() {
                     <input
                       type="text"
                       id="dateTime"
-                      name="dateTime"
+                      name="event_date"
                       value={formData.dateTime}
                       onChange={handleInputChange}
                       placeholder="e.g., March 15, 2024, 10:00 AM - 2:00 PM"
@@ -843,7 +886,7 @@ function App() {
                   <label htmlFor="notes">Notes</label>
                   <textarea
                     id="notes"
-                    name="notes"
+                    name="message"
                     value={formData.notes}
                     onChange={handleInputChange}
                     rows={4}
@@ -852,16 +895,20 @@ function App() {
                 </div>
                 {formStatus === 'error' && (
                   <div className="form-message error" role="alert">
-                    Please fill in all required fields.
+                    Something went wrong — please try again or email <a href="mailto:unseriouscoffee@gmail.com" style={{color: 'inherit', textDecoration: 'underline'}}>unseriouscoffee@gmail.com</a>
                   </div>
                 )}
                 {formStatus === 'success' && (
                   <div className="form-message success" role="alert">
-                    Thank you! Your email client should open with the request details.
+                    Request received — we'll hit you back soon ☕
                   </div>
                 )}
-                <button type="submit" className="cta-button primary form-submit">
-                  Send Request
+                <button 
+                  type="submit" 
+                  className="cta-button primary form-submit"
+                  disabled={formStatus === 'loading'}
+                >
+                  {formStatus === 'loading' ? 'Sending...' : 'Send Request'}
                 </button>
               </form>
             </div>
