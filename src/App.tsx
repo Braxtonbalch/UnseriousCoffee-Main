@@ -1,12 +1,25 @@
 import { useEffect, useState, useRef } from 'react';
 import './App.css';
 
-type Page = 'home' | 'menu' | 'find-us' | 'about' | 'merchandise';
+type Page = 'home' | 'menu' | 'find-us' | 'about' | 'merchandise' | 'pop-ups';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [headerHeight, setHeaderHeight] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    organization: '',
+    email: '',
+    phone: '',
+    eventType: '',
+    dateTime: '',
+    location: '',
+    attendance: '',
+    notes: ''
+  });
+  const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const defaultContent = {
     heroTagline: "The grind sucks. Our coffee doesn't.",
@@ -22,6 +35,19 @@ function App() {
   };
 
   const content = defaultContent;
+
+  // Update document title based on current page
+  useEffect(() => {
+    const titles: Record<Page, string> = {
+      'home': 'Unserious Coffee - Serious Coffee, Unserious Vibes',
+      'menu': 'Menu | Unserious Coffee',
+      'find-us': 'Find Us | Unserious Coffee',
+      'about': 'About | Unserious Coffee',
+      'merchandise': 'Merchandise | Unserious Coffee',
+      'pop-ups': 'Pop-Ups | Unserious Coffee'
+    };
+    document.title = titles[currentPage] || 'Unserious Coffee';
+  }, [currentPage]);
 
   useEffect(() => {
     // Grain overlay animation
@@ -94,12 +120,65 @@ function App() {
     };
   }, []);
 
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Client-side validation
+    if (!formData.name || !formData.email || !formData.eventType || !formData.dateTime || !formData.location) {
+      setFormStatus('error');
+      return;
+    }
+
+    // Create mailto link with form data
+    const subject = encodeURIComponent(`Pop-Up Request: ${formData.eventType}`);
+    const body = encodeURIComponent(
+      `Pop-Up Request Form Submission\n\n` +
+      `Name: ${formData.name}\n` +
+      `Organization/Brokerage/Business: ${formData.organization || 'N/A'}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone || 'N/A'}\n` +
+      `Event Type: ${formData.eventType}\n` +
+      `Date/Time: ${formData.dateTime}\n` +
+      `Location: ${formData.location}\n` +
+      `Expected Attendance: ${formData.attendance || 'N/A'}\n` +
+      `Notes: ${formData.notes || 'N/A'}`
+    );
+    
+    window.location.href = `mailto:UnseriousCoffee@gmail.com?subject=${subject}&body=${body}`;
+    setFormStatus('success');
+    
+    // Reset form after a delay
+    setTimeout(() => {
+      setFormData({
+        name: '',
+        organization: '',
+        email: '',
+        phone: '',
+        eventType: '',
+        dateTime: '',
+        location: '',
+        attendance: '',
+        notes: ''
+      });
+      setFormStatus('idle');
+    }, 3000);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
 
 
   const menuItems = {
     'Unserious Picks': [
-      { name: 'Death Wish Espresso', description: 'For when you need to feel alive again', price: '$4.50', featured: true },
-      { name: 'Skeleton Latte', description: 'Bone-chillingly good (but actually warm)', price: '$5.00', featured: true },
+      { name: 'The Yauff', description: 'Why fix what aint broken "Drip Coffee"', price: '$2.00', featured: true },
+      { name: 'The O.G. Latte', description: 'Bone-chillingly good (but actually warm)', price: '$5.00', featured: true },
       { name: 'Monday Morning Murder', description: 'Strong enough to kill your Monday blues', price: '$4.75', featured: true },
     ],
     'Espresso': [
@@ -219,6 +298,12 @@ function App() {
               onClick={() => setCurrentPage('merchandise')}
             >
               Merchandise
+            </button>
+            <button 
+              className={`nav-link ${currentPage === 'pop-ups' ? 'active' : ''}`}
+              onClick={() => setCurrentPage('pop-ups')}
+            >
+              Pop-Ups
             </button>
           </div>
         </div>
@@ -498,6 +583,366 @@ function App() {
               <p>💡 <strong>Coming Soon:</strong> We're working on getting our merch store up and running. In the meantime, follow us on social media for updates and maybe we'll have some pop-up merch at our trailer!</p>
             </div>
           </div>
+        </section>
+      )}
+
+      {currentPage === 'pop-ups' && (
+        <section className="popups-page">
+          {/* Hero Section */}
+          <section className="popups-hero">
+            <div className="container">
+              <div className="popups-hero-content smooth-reveal">
+                <div className="free-badge">FREE for now</div>
+                <h1>Pop-Ups</h1>
+                <h2 className="popups-headline">We'll bring the espresso. You bring the people.</h2>
+                <p className="popups-subheadline">
+                  We set up pop-up coffee bars at open houses, broker's opens, boutiques, local businesses, farmers markets, and events. 
+                  All we ask: spread the name <strong>UNSERIOUS COFFEE</strong>.
+                </p>
+                <div className="popups-cta-buttons">
+                  <button className="cta-button primary" onClick={() => document.getElementById('popup-form')?.scrollIntoView({ behavior: 'smooth' })}>
+                    Request a Pop-Up
+                  </button>
+                  <a href="https://www.instagram.com/unseriouscoffee/" target="_blank" rel="noopener noreferrer" className="cta-button secondary">
+                    Follow Us
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Where We Pop Up */}
+          <section className="popups-section">
+            <div className="container">
+              <div className="section-header smooth-reveal">
+                <h2>Where We Pop Up</h2>
+                <p className="section-subtitle">We're flexible. You're busy. Let's make it work.</p>
+              </div>
+              <div className="popup-categories-grid smooth-reveal-stagger">
+                <div className="popup-category-card">
+                  <div className="category-icon">🏠</div>
+                  <h3>Real Estate</h3>
+                  <p>Open houses and broker's opens that need that extra touch.</p>
+                </div>
+                <div className="popup-category-card">
+                  <div className="category-icon">🌾</div>
+                  <h3>Farmers Markets</h3>
+                  <p>Local markets where community and coffee come together.</p>
+                </div>
+                <div className="popup-category-card">
+                  <div className="category-icon">🛍️</div>
+                  <h3>Local Businesses / Boutiques</h3>
+                  <p>Boutiques and shops looking to create a memorable experience.</p>
+                </div>
+                <div className="popup-category-card">
+                  <div className="category-icon">🎉</div>
+                  <h3>Events</h3>
+                  <p>Community gatherings, corporate events, and private celebrations.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* How It Works */}
+          <section className="popups-section alt-bg">
+            <div className="container">
+              <div className="section-header smooth-reveal">
+                <h2>How It Works</h2>
+                <p className="section-subtitle">Three simple steps to caffeinated bliss</p>
+              </div>
+              <div className="how-it-works-steps smooth-reveal-stagger">
+                <div className="step-card">
+                  <div className="step-number">1</div>
+                  <h3>Pick a date + location</h3>
+                  <p>Tell us when and where, and we'll check our availability.</p>
+                </div>
+                <div className="step-card">
+                  <div className="step-number">2</div>
+                  <h3>We set up a clean pop-up espresso bar</h3>
+                  <p>We bring everything needed for a professional coffee experience.</p>
+                </div>
+                <div className="step-card">
+                  <div className="step-number">3</div>
+                  <h3>You share/mention UNSERIOUS COFFEE</h3>
+                  <p>Signage + social tag. That's it. Simple as that.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* What We Serve */}
+          <section className="popups-section">
+            <div className="container">
+              <div className="section-header smooth-reveal">
+                <h2>What We Serve</h2>
+                <p className="section-subtitle">Quality coffee, zero pretension</p>
+              </div>
+              <div className="popup-menu-list smooth-reveal">
+                <ul className="menu-list">
+                  <li>Espresso</li>
+                  <li>Americano</li>
+                  <li>Latte</li>
+                  <li>Cortado</li>
+                  <li>Tea</li>
+                </ul>
+                <p className="menu-note">Menu can be tailored to the event.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* What You Provide */}
+          <section className="popups-section alt-bg">
+            <div className="container">
+              <div className="section-header smooth-reveal">
+                <h2>What You Provide</h2>
+                <p className="section-subtitle">Keep it simple, keep it chill</p>
+              </div>
+              <div className="requirements-list smooth-reveal">
+                <ul className="requirements">
+                  <li>Access to power (standard outlet)</li>
+                  <li>A small footprint (table + space)</li>
+                  <li>Permission to serve on-site</li>
+                  <li>Optional: a spot for a small sign + QR code</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* Free For Now */}
+          <section className="popups-section">
+            <div className="container">
+              <div className="free-for-now-content smooth-reveal">
+                <h2>Free For Now</h2>
+                <p>
+                  Pop-ups are currently <strong>FREE</strong> while we build community partnerships. 
+                  The only ask is helping spread the name (social tag/mention + letting guests know it's UNSERIOUS COFFEE).
+                </p>
+                <p className="disclaimer">
+                  <small>Availability is limited; travel/time constraints may apply.</small>
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Request Form */}
+          <section id="popup-form" className="popups-section alt-bg">
+            <div className="container">
+              <div className="section-header smooth-reveal">
+                <h2>Request a Pop-Up</h2>
+                <p className="section-subtitle">Let's make your event unforgettable</p>
+              </div>
+              <form className="popup-request-form smooth-reveal" onSubmit={handleFormSubmit}>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="name">Name *</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                      aria-required="true"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="organization">Organization / Brokerage / Business</label>
+                    <input
+                      type="text"
+                      id="organization"
+                      name="organization"
+                      value={formData.organization}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="email">Email *</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      aria-required="true"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="phone">Phone</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="eventType">Event Type *</label>
+                    <select
+                      id="eventType"
+                      name="eventType"
+                      value={formData.eventType}
+                      onChange={handleInputChange}
+                      required
+                      aria-required="true"
+                    >
+                      <option value="">Select event type</option>
+                      <option value="open-house">Open House</option>
+                      <option value="brokers-open">Broker's Open</option>
+                      <option value="farmers-market">Farmers Market</option>
+                      <option value="boutique">Boutique</option>
+                      <option value="event">Event</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="dateTime">Date/Time *</label>
+                    <input
+                      type="text"
+                      id="dateTime"
+                      name="dateTime"
+                      value={formData.dateTime}
+                      onChange={handleInputChange}
+                      placeholder="e.g., March 15, 2024, 10:00 AM - 2:00 PM"
+                      required
+                      aria-required="true"
+                    />
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="location">Location / Address *</label>
+                  <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleInputChange}
+                    required
+                    aria-required="true"
+                  />
+                </div>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="attendance">Expected Attendance</label>
+                    <input
+                      type="text"
+                      id="attendance"
+                      value={formData.attendance}
+                      onChange={handleInputChange}
+                      name="attendance"
+                      placeholder="e.g., 50-100 people"
+                    />
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="notes">Notes</label>
+                  <textarea
+                    id="notes"
+                    name="notes"
+                    value={formData.notes}
+                    onChange={handleInputChange}
+                    rows={4}
+                    placeholder="Any additional details about your event..."
+                  />
+                </div>
+                {formStatus === 'error' && (
+                  <div className="form-message error" role="alert">
+                    Please fill in all required fields.
+                  </div>
+                )}
+                {formStatus === 'success' && (
+                  <div className="form-message success" role="alert">
+                    Thank you! Your email client should open with the request details.
+                  </div>
+                )}
+                <button type="submit" className="cta-button primary form-submit">
+                  Send Request
+                </button>
+              </form>
+            </div>
+          </section>
+
+          {/* FAQ */}
+          <section className="popups-section">
+            <div className="container">
+              <div className="section-header smooth-reveal">
+                <h2>Frequently Asked Questions</h2>
+                <p className="section-subtitle">Got questions? We've got answers.</p>
+              </div>
+              <div className="faq-accordion smooth-reveal">
+                {[
+                  {
+                    question: 'Is it really free?',
+                    answer: 'Yes! Pop-ups are currently FREE while we build community partnerships. The only ask is helping spread the name UNSERIOUS COFFEE through social tags/mentions and letting guests know who\'s serving the coffee.'
+                  },
+                  {
+                    question: 'What kinds of events do you do?',
+                    answer: 'We do open houses, broker\'s opens, farmers markets, boutique events, community gatherings, corporate events, and private celebrations. If you have an event, let\'s talk!'
+                  },
+                  {
+                    question: 'How much space do you need?',
+                    answer: 'We need a small footprint - just enough for a table and some space to work. Typically about 6x4 feet is perfect, but we can work with what you have.'
+                  },
+                  {
+                    question: 'Do you need water access?',
+                    answer: 'No water access needed! We bring everything we need, including water. Just need a standard power outlet.'
+                  },
+                  {
+                    question: 'How far do you travel?',
+                    answer: 'We primarily serve the Panama City, Florida area. Availability is limited and travel/time constraints may apply, but we\'re flexible - reach out and let\'s see if we can make it work!'
+                  },
+                  {
+                    question: 'Can we book recurring pop-ups?',
+                    answer: 'Absolutely! We love building ongoing partnerships. If you have a regular event or recurring need, let\'s chat about setting something up.'
+                  },
+                  {
+                    question: 'Do you do indoor vs outdoor?',
+                    answer: 'Both! We can set up indoors or outdoors. Just let us know your setup and we\'ll make sure we\'re prepared.'
+                  },
+                  {
+                    question: 'What do you need from us to promote UNSERIOUS COFFEE?',
+                    answer: 'Simple: allow us to display a small sign with our name and QR code, and if you\'re posting on social media, tag us @unseriouscoffee. That\'s it!'
+                  }
+                ].map((faq, index) => (
+                  <div key={index} className="faq-item">
+                    <button
+                      className={`faq-question ${openFaq === index ? 'open' : ''}`}
+                      onClick={() => toggleFaq(index)}
+                      aria-expanded={openFaq === index}
+                      aria-controls={`faq-answer-${index}`}
+                    >
+                      <span>{faq.question}</span>
+                      <span className="faq-icon">{openFaq === index ? '−' : '+'}</span>
+                    </button>
+                    <div
+                      id={`faq-answer-${index}`}
+                      className={`faq-answer ${openFaq === index ? 'open' : ''}`}
+                      aria-hidden={openFaq !== index}
+                    >
+                      <p>{faq.answer}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Final CTA */}
+          <section className="popups-cta-strip">
+            <div className="container">
+              <div className="cta-strip-content smooth-reveal">
+                <h2>Let's make your event unforgettable.</h2>
+                <button className="cta-button primary" onClick={() => document.getElementById('popup-form')?.scrollIntoView({ behavior: 'smooth' })}>
+                  Request a Pop-Up
+                </button>
+              </div>
+            </div>
+          </section>
         </section>
       )}
 
