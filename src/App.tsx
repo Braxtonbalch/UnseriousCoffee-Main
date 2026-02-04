@@ -218,16 +218,6 @@ function App() {
           setFormStatus(prev => prev === 'success' ? 'idle' : prev);
         }, 10000);
       } else {
-        // Try to get error details from response
-        let errorMessage = 'Something went wrong';
-        try {
-          const errorData = await response.json();
-          if (errorData.error) {
-            errorMessage = errorData.error;
-          }
-        } catch (e) {
-          // If we can't parse error, use default message
-        }
         setFormStatus('error');
         // Clear error message after 5 seconds
         setTimeout(() => {
