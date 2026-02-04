@@ -153,6 +153,44 @@ function App() {
       // Format: https://formspree.io/f/YOUR_FORM_ID
       const FORMPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
       
+      // Check if endpoint is still placeholder - use mailto fallback
+      if (FORMPREE_ENDPOINT.includes('YOUR_FORM_ID')) {
+        // Fallback to mailto if Formspree not configured
+        const subject = encodeURIComponent(`Pop-Up Request: ${formData.eventType}`);
+        const body = encodeURIComponent(
+          `Pop-Up Request Form Submission\n\n` +
+          `Name: ${formData.name}\n` +
+          `Organization/Brokerage/Business: ${formData.organization || 'N/A'}\n` +
+          `Email: ${formData.email}\n` +
+          `Phone: ${formData.phone || 'N/A'}\n` +
+          `Event Type: ${formData.eventType}\n` +
+          `Date/Time: ${formData.dateTime}\n` +
+          `Location: ${formData.location}\n` +
+          `Expected Attendance: ${formData.attendance || 'N/A'}\n` +
+          `Notes: ${formData.notes || 'N/A'}`
+        );
+        
+        window.location.href = `mailto:unseriouscoffee@gmail.com?subject=${subject}&body=${body}`;
+        setFormStatus('success');
+        // Clear form on success
+        setFormData({
+          name: '',
+          organization: '',
+          email: '',
+          phone: '',
+          eventType: '',
+          dateTime: '',
+          location: '',
+          attendance: '',
+          notes: ''
+        });
+        // Clear success message after 10 seconds
+        setTimeout(() => {
+          setFormStatus(prev => prev === 'success' ? 'idle' : prev);
+        }, 10000);
+        return;
+      }
+      
       const response = await fetch(FORMPREE_ENDPOINT, {
         method: 'POST',
         body: formDataToSubmit,
@@ -180,6 +218,16 @@ function App() {
           setFormStatus(prev => prev === 'success' ? 'idle' : prev);
         }, 10000);
       } else {
+        // Try to get error details from response
+        let errorMessage = 'Something went wrong';
+        try {
+          const errorData = await response.json();
+          if (errorData.error) {
+            errorMessage = errorData.error;
+          }
+        } catch (e) {
+          // If we can't parse error, use default message
+        }
         setFormStatus('error');
         // Clear error message after 5 seconds
         setTimeout(() => {
@@ -187,6 +235,7 @@ function App() {
         }, 5000);
       }
     } catch (error) {
+      console.error('Form submission error:', error);
       setFormStatus('error');
       // Clear error message after 5 seconds
       setTimeout(() => {
