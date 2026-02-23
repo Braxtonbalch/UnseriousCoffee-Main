@@ -368,7 +368,7 @@ function App() {
               </p>
               <div className="hero-buttons">
                 <button className="cta-button primary" onClick={() => setCurrentPage('about')}>
-                  BOOK US
+                  BOOK A POP-UP
                 </button>
                 <button className="cta-button secondary" onClick={() => setCurrentPage('find-us')}>
                   Find Our Trailer
