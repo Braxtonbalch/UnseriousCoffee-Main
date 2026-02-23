@@ -28,8 +28,14 @@ function App() {
       "Unserious Coffee is a mobile pop-up coffee experience designed to elevate events and bring people together. We partner with real estate agents, brokers, small businesses, markets, and community events to serve fresh, handcrafted hot and iced coffee on-site. Whether it's an open house, boutique launch, corporate gathering, or local event, we tailor the menu and setup to fit your vibe—creating a welcoming atmosphere that helps you connect with your guests in a memorable way.",
     elevatorSecond:
       "We serve serious coffee with unserious vibes. Great coffee shouldn't cost a fortune, after tasting some of the best coffee around the world, we learned that quality and affordability can go hand in hand. Add good music and great people, and you've got the perfect cup. And if your boss needs to relax… bring them by — we've seen coffee work miracles.",
-    elevatorThird:
-      "Serving Panama City, Florida - a place where the coffee is strong, the vibes are chill, and the community is everything. Life's too short for bad coffee and boring conversations.",
+    serviceAreas: [
+      'Callaway, FL',
+      'Panama City, FL',
+      'Lynn Haven, FL',
+      'Parker, FL',
+      'Southport, FL',
+      'Panama City Beach, FL',
+    ],
     aboutSkeletonQuote: '"Work hard, but remember: none of us make it out alive anyway."',
     aboutText: "Unserious Coffee isn't just a business — it's a reminder that life isn't meant to be a nonstop grind with no room to breathe. In a world obsessed with productivity and burnout, we exist to pull people out of the rat race, even if it's only for the length of a cup. Every drink is an invitation to pause, laugh, and remember that your worth isn't measured by emails or deadlines. Life is short, and nobody ever looks back wishing they'd spent more time stressed out. So come in, loosen up, and enjoy the little moments — they're the whole point."
   };
@@ -392,9 +398,11 @@ function App() {
                   <p className="elevator-second">
                     {content.elevatorSecond}
                   </p>
-                  <p className="elevator-third">
-                    {content.elevatorThird}
-                  </p>
+                  <ul className="elevator-locations">
+                    {content.serviceAreas.map((area) => (
+                      <li key={area}>{area}</li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
