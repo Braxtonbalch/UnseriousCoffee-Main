@@ -256,10 +256,10 @@ function App() {
 
   // Update this object whenever you have a new pop-up booked
   const nextPopUp = {
-    location: 'TBD',
-    date: 'TBD',
-    time: 'TBD',
-    eventType: 'TBD',
+    location: 'LOCATION:',
+    date: 'DATE:',
+    time: 'TIME:',
+    eventType: 'EVENT:',
     note: 'Check back here or follow us on social for the latest.',
   };
 
