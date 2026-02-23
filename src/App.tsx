@@ -29,7 +29,7 @@ function App() {
     elevatorSecond:
       "We serve serious coffee with unserious vibes. Great coffee shouldn't cost a fortune, after tasting some of the best coffee around the world, we learned that quality and affordability can go hand in hand. Add good music and great people, and you've got the perfect cup. And if your boss needs to relax… bring them by — we've seen coffee work miracles.",
     elevatorThird:
-      "Coming soon to Panama City, Florida - a place where the coffee is strong, the vibes are chill, and the community is everything. Because life's too short for bad coffee and boring conversations.",
+      "Serving Panama City, Florida - a place where the coffee is strong, the vibes are chill, and the community is everything. Life's too short for bad coffee and boring conversations.",
     aboutSkeletonQuote: '"Work hard, but remember: none of us make it out alive anyway."',
     aboutText: "Unserious Coffee isn't just a business — it's a reminder that life isn't meant to be a nonstop grind with no room to breathe. In a world obsessed with productivity and burnout, we exist to pull people out of the rat race, even if it's only for the length of a cup. Every drink is an invitation to pause, laugh, and remember that your worth isn't measured by emails or deadlines. Life is short, and nobody ever looks back wishing they'd spent more time stressed out. So come in, loosen up, and enjoy the little moments — they're the whole point."
   };
