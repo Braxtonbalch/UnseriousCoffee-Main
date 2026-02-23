@@ -646,6 +646,16 @@ function App() {
                   <h3>Events</h3>
                   <p>Community gatherings, corporate events, and private celebrations.</p>
                 </div>
+                <div className="popup-category-card">
+                  <div className="category-icon">🎂</div>
+                  <h3>Parties</h3>
+                  <p>Birthdays, showers, reunions—any excuse for great coffee and good vibes.</p>
+                </div>
+                <div className="popup-category-card">
+                  <div className="category-icon">✨</div>
+                  <h3>You Name It</h3>
+                  <p>Got another idea? We're open to it. Reach out and let's make it happen.</p>
+                </div>
               </div>
             </div>
           </section>
