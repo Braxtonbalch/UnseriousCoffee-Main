@@ -27,7 +27,7 @@ function App() {
     elevatorLead:
       "Unserious Coffee is a mobile pop-up coffee experience designed to elevate events and bring people together. We partner with real estate agents, brokers, small businesses, markets, and community events to serve fresh, handcrafted hot and iced coffee on-site. Whether it's an open house, boutique launch, corporate gathering, or local event, we tailor the menu and setup to fit your vibe—creating a welcoming atmosphere that helps you connect with your guests in a memorable way.",
     elevatorSecond:
-      "Our mission is simple: serve serious coffee with unserious vibes. We believe coffee should be cheap in price but not in taste. After traveling around the world and tasting some of the best coffee, we know that exceptional quality doesn't have to break the bank. We believe coffee is always best paired with bangin music and great friends - because the perfect brew deserves the perfect vibe. And hey, if you've got an uptight boss, bring them here and tell them to chill out - our coffee has that effect on people.",
+      "We serve serious coffee with unserious vibes. Great coffee shouldn't cost a fortune, after tasting some of the best coffee around the world, we learned that quality and affordability can go hand in hand. Add good music and great people, and you've got the perfect cup. And if your boss needs to relax… bring them by — we've seen coffee work miracles.",
     elevatorThird:
       "Coming soon to Panama City, Florida - a place where the coffee is strong, the vibes are chill, and the community is everything. Because life's too short for bad coffee and boring conversations.",
     aboutSkeletonQuote: '"Work hard, but remember: none of us make it out alive anyway."',
