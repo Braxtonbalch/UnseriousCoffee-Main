@@ -594,7 +594,7 @@ function App() {
               <div className="popups-hero-content smooth-reveal">
                 <div className="free-badge">FREE for now</div>
                 <h1>Pop-Ups</h1>
-                <h2 className="popups-headline">We'll bring the espresso. You bring the people.</h2>
+                <h2 className="popups-headline">We'll bring the espresso, You bring the people!</h2>
                 <p className="popups-subheadline">
                   We set up pop-up coffee bars at open houses, broker's opens, boutiques, local businesses, farmers markets, and events. 
                   All we ask: spread the name <strong>UNSERIOUS COFFEE</strong>.
