@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unserious Coffee — Menu</title>
+  <style>
+    @page {
+      size: 8.5in 11in;
+      margin: 0.75in;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 8.5in;
+      min-height: 11in;
+      margin: 0 auto;
+      padding: 0.75in;
+      background: #0f172a;
+      background-image: radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.12) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(139, 115, 85, 0.08) 0%, transparent 50%);
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #e2e8f0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 9.5in;
+      text-align: center;
+    }
+
+    .header {
+      margin-bottom: 1.5rem;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #f59e0b;
+      text-shadow: 0 0 24px rgba(245, 158, 11, 0.35);
+      margin-bottom: 0.35rem;
+    }
+
+    .tagline {
+      font-size: 1rem;
+      font-weight: 300;
+      font-style: italic;
+      color: #cbd5e1;
+    }
+
+    .divider {
+      width: 4.5in;
+      height: 1px;
+      background: rgba(245, 158, 11, 0.35);
+      margin: 2rem 0;
+    }
+
+    .drinks {
+      list-style: none;
+      margin: 0.5rem 0;
+    }
+
+    .drinks li {
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: #e2e8f0;
+      padding: 0.5rem 0;
+      letter-spacing: 0.01em;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: #94a3b8;
+    }
+
+    @media print {
+      body {
+        margin: 0;
+        padding: 0.75in;
+        box-shadow: none;
+      }
+      .menu {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="menu">
+    <header class="header">
+      <h1 class="title">UNSERIOUS COFFEE</h1>
+      <p class="tagline">Life's Not That Serious.</p>
+    </header>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <ul class="drinks">
+      <li>Latte</li>
+      <li>Caramel Latte</li>
+      <li>Mocha Latte</li>
+      <li>Vanilla Latte</li>
+      <li>Honey Latte</li>
+      <li>Americano</li>
+    </ul>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <p class="footer">All drinks available Hot or Iced.</p>
+  </div>
+</body>
+</html>

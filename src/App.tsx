@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import './App.css';
 
-type Page = 'home' | 'menu' | 'find-us' | 'about' | 'merchandise' | 'pop-ups';
+type Page = 'home' | 'find-us' | 'about' | 'merchandise' | 'pop-ups';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -40,7 +40,6 @@ function App() {
   useEffect(() => {
     const titles: Record<Page, string> = {
       'home': 'Unserious Coffee - Serious Coffee, Unserious Vibes',
-      'menu': 'Menu | Unserious Coffee',
       'find-us': 'Find Us | Unserious Coffee',
       'about': 'About | Unserious Coffee',
       'merchandise': 'Merchandise | Unserious Coffee',
@@ -247,38 +246,6 @@ function App() {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-
-
-  const menuItems = {
-    'Unserious Picks': [
-      { name: 'The Yauff', description: 'Why fix what aint broken "Drip Coffee"', price: '$2.00', featured: true },
-      { name: 'The O.G. Latte', description: 'Bone-chillingly good (but actually warm)', price: '$5.00', featured: true },
-      { name: 'Monday Morning Murder', description: 'Strong enough to kill your Monday blues', price: '$4.75', featured: true },
-    ],
-    'Espresso': [
-      { name: 'Espresso Shot', description: 'Pure, unadulterated caffeine', price: '$2.50' },
-      { name: 'Double Shot', description: 'For the brave souls', price: '$3.50' },
-      { name: 'Americano', description: 'Espresso with hot water (we keep it simple)', price: '$3.00' },
-      { name: 'Cortado', description: 'Espresso + steamed milk = perfection', price: '$4.00' },
-    ],
-    'Coffee': [
-      { name: 'Drip Coffee', description: 'Classic. Reliable. Caffeinated.', price: '$2.75' },
-      { name: 'Cold Brew', description: 'Smooth, strong, and ready to go', price: '$4.00' },
-      { name: 'Nitro Cold Brew', description: 'Cold brew but make it fancy', price: '$5.00' },
-    ],
-    'Specialty Drinks': [
-      { name: 'Vanilla Latte', description: 'Basic? Maybe. Delicious? Absolutely.', price: '$5.50' },
-      { name: 'Caramel Macchiato', description: 'Sweet, creamy, and slightly pretentious', price: '$5.75' },
-      { name: 'Mocha', description: 'Coffee + chocolate = happiness', price: '$5.50' },
-      { name: 'Matcha Latte', description: 'For when you want to feel zen (but still caffeinated)', price: '$5.00' },
-    ],
-    'Tea': [
-      { name: 'Green Tea', description: 'For the health-conscious (we see you)', price: '$3.00' },
-      { name: 'Chai Latte', description: 'Spicy, warm, and comforting', price: '$4.50' },
-      { name: 'Earl Grey', description: 'Fancy tea for fancy people', price: '$3.50' },
-    ],
-  };
-
   const schedule = [
     { day: 'Monday', location: 'Downtown Panama City', time: '7:00 AM - 2:00 PM', status: 'Open' },
     { day: 'Tuesday', location: 'St. Andrews', time: '7:00 AM - 2:00 PM', status: 'Open' },
@@ -350,12 +317,6 @@ function App() {
               Home
             </button>
             <button 
-              className={`nav-link ${currentPage === 'menu' ? 'active' : ''}`}
-              onClick={() => setCurrentPage('menu')}
-            >
-              Menu
-            </button>
-            <button 
               className={`nav-link ${currentPage === 'find-us' ? 'active' : ''}`}
               onClick={() => setCurrentPage('find-us')}
             >
@@ -409,7 +370,7 @@ function App() {
                 {content.heroLocation}
               </p>
               <div className="hero-buttons">
-                <button className="cta-button primary" onClick={() => setCurrentPage('menu')}>
+                <button className="cta-button primary" onClick={() => setCurrentPage('about')}>
                   See What We're Brewing
                 </button>
                 <button className="cta-button secondary" onClick={() => setCurrentPage('find-us')}>
@@ -501,58 +462,7 @@ function App() {
         </>
       )}
 
-      {currentPage === 'menu' && (
-        <section className="menu-page">
-          <div className="container">
-            <div className="section-header smooth-reveal">
-              <h2>Our Menu</h2>
-              <p className="section-subtitle">Good coffee, bad jokes, zero regrets</p>
-            </div>
-            
-            <div className="menu-tabs">
-              {Object.keys(menuItems).map((category) => (
-                <button
-                  key={category}
-                  className={`menu-tab ${category === 'Unserious Picks' ? 'active' : ''}`}
-                  onClick={(e) => {
-                    const tabs = document.querySelectorAll('.menu-tab');
-                    tabs.forEach(tab => tab.classList.remove('active'));
-                    e.currentTarget.classList.add('active');
-                    const categoryName = e.currentTarget.textContent;
-                    const categorySection = document.querySelector(`[data-category="${categoryName}"]`);
-                    if (categorySection) {
-                      categorySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                  }}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-
-            {Object.entries(menuItems).map(([category, items]) => (
-              <div key={category} className="menu-category" data-category={category}>
-                <h3 className="category-title">
-                  {category}
-                  {category === 'Unserious Picks' && <span className="featured-badge">🔥 Hot Picks</span>}
-                </h3>
-                <div className="menu-grid smooth-reveal-stagger">
-                  {items.map((item, index) => (
-                    <div key={index} className={`menu-item ${'featured' in item && item.featured ? 'featured' : ''}`}>
-                      {'featured' in item && item.featured && <div className="featured-glow"></div>}
-                      <div className="menu-item-content">
-                        <h4>{item.name}</h4>
-                        <p>{item.description}</p>
-                        <span className="price">{item.price}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+      {/* Menu page removed from navigation; keeping data for future use if needed */}
 
       {currentPage === 'find-us' && (
         <section className="find-us-page">
