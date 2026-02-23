@@ -480,7 +480,7 @@ function App() {
             <div className="section-header smooth-reveal">
               <h2>Find Us</h2>
               <p className="section-subtitle">
-                Unserious Coffee is a mobile pop-up coffee shop serving Panama City and surrounding areas.
+                Come find where Unserious Coffee will be next!
               </p>
             </div>
             
