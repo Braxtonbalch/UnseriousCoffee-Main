@@ -1,153 +1,88 @@
 import './FindUs.css';
 
-interface ScheduleItem {
-  day: string;
-  time: string;
+interface NextPopUp {
   location: string;
-  status: 'open' | 'closed' | 'special';
+  date: string;
+  time: string;
+  eventType: string;
   note?: string;
 }
 
-const schedule: ScheduleItem[] = [
-  {
-    day: 'Monday',
-    time: '7:00 AM - 2:00 PM',
-    location: 'Downtown Wichita',
-    status: 'open',
-  },
-  {
-    day: 'Tuesday',
-    time: '7:00 AM - 2:00 PM',
-    location: 'Riverside Park',
-    status: 'open',
-  },
-  {
-    day: 'Wednesday',
-    time: '7:00 AM - 2:00 PM',
-    location: 'Old Town Square',
-    status: 'open',
-  },
-  {
-    day: 'Thursday',
-    time: '7:00 AM - 2:00 PM',
-    location: 'College Hill',
-    status: 'open',
-  },
-  {
-    day: 'Friday',
-    time: '7:00 AM - 3:00 PM',
-    location: 'Downtown Wichita',
-    status: 'open',
-    note: 'Extended hours for your weekend prep',
-  },
-  {
-    day: 'Saturday',
-    time: '8:00 AM - 2:00 PM',
-    location: 'Farmers Market',
-    status: 'open',
-  },
-  {
-    day: 'Sunday',
-    time: 'Closed',
-    location: 'Recovering from the week',
-    status: 'closed',
-    note: 'Even coffee trailers need a day off',
-  },
-];
+// Update this object whenever you have a new pop-up booked
+const nextPopUp: NextPopUp = {
+  location: 'TBD',
+  date: 'TBD',
+  time: 'TBD',
+  eventType: 'TBD',
+  note: 'Check back here or follow us on social for the latest.',
+};
 
 export default function FindUs() {
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'open':
-        return '#68d391';
-      case 'closed':
-        return '#fc8181';
-      case 'special':
-        return '#d69e2e';
-      default:
-        return '#718096';
-    }
-  };
-
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case 'open':
-        return 'Open';
-      case 'closed':
-        return 'Closed';
-      case 'special':
-        return 'Special Hours';
-      default:
-        return 'Unknown';
-    }
-  };
 
   return (
     <div className="find-us-page">
       <div className="find-us-hero">
         <div className="find-us-hero-content">
           <h1>Find Us</h1>
-          <p className="find-us-hero-subtitle">We're mobile. We're flexible. We're probably caffeinated.</p>
+          <p className="find-us-hero-subtitle">
+            Unserious Coffee is a mobile pop-up coffee shop serving Panama City and surrounding areas.
+          </p>
         </div>
       </div>
 
       <section className="schedule-section">
         <div className="container">
           <div className="schedule-header">
-            <h2>Trailer Schedule</h2>
+            <h2>Next Pop-Up</h2>
             <p className="schedule-subtitle">
-              Our coffee trailer roams around Wichita. Here's where you can catch us (or miss us, no judgment).
+              We&apos;re a mobile pop-up coffee shop. Check here to see where we&apos;re brewing next.
             </p>
           </div>
 
           <div className="schedule-grid">
-            {schedule.map((item, index) => (
-              <div 
-                key={item.day} 
-                className="schedule-card"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="schedule-card-header">
-                  <h3>{item.day}</h3>
-                  <span 
-                    className="status-badge"
-                    style={{ 
-                      backgroundColor: getStatusColor(item.status),
-                      color: item.status === 'open' ? '#1a202c' : '#fff'
-                    }}
-                  >
-                    {getStatusText(item.status)}
-                  </span>
-                </div>
-                <div className="schedule-card-body">
-                  <div className="schedule-time">
-                    <span className="schedule-icon">⏰</span>
-                    <span>{item.time}</span>
-                  </div>
-                  <div className="schedule-location">
-                    <span className="schedule-icon">📍</span>
-                    <span>{item.location}</span>
-                  </div>
-                  {item.note && (
-                    <div className="schedule-note">
-                      <span className="schedule-icon">💡</span>
-                      <span>{item.note}</span>
-                    </div>
-                  )}
-                </div>
+            <div className="schedule-card">
+              <div className="schedule-card-header">
+                <h3>Upcoming Event</h3>
+                <span className="status-badge" style={{ backgroundColor: '#d69e2e', color: '#1a202c' }}>
+                  Pop-Up
+                </span>
               </div>
-            ))}
+              <div className="schedule-card-body">
+                <div className="schedule-location">
+                  <span className="schedule-icon">📍</span>
+                  <span>{nextPopUp.location}</span>
+                </div>
+                <div className="schedule-time">
+                  <span className="schedule-icon">📅</span>
+                  <span>{nextPopUp.date}</span>
+                </div>
+                <div className="schedule-time">
+                  <span className="schedule-icon">⏰</span>
+                  <span>{nextPopUp.time}</span>
+                </div>
+                <div className="schedule-time">
+                  <span className="schedule-icon">🎟️</span>
+                  <span>{nextPopUp.eventType}</span>
+                </div>
+                {nextPopUp.note && (
+                  <div className="schedule-note">
+                    <span className="schedule-icon">💡</span>
+                    <span>{nextPopUp.note}</span>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
 
           <div className="schedule-footer">
             <div className="schedule-note-box">
               <h3>📱 Stay Updated</h3>
               <p>
-                Schedule subject to change (because life happens). 
-                Follow us on social media for real-time updates and surprise locations.
+                Pop-up details can change (because life happens). 
+                Follow us on social media for real-time updates and new locations.
               </p>
               <p className="schedule-note-small">
-                Pro tip: If you see a coffee trailer and hear good music, that's probably us.
+                Pro tip: If you see a pop-up coffee bar and hear good music, that&apos;s probably us.
               </p>
             </div>
           </div>
