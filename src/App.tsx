@@ -155,7 +155,7 @@ function App() {
     if (formData.notes) formDataToSubmit.append('message', formData.notes);
 
     try {
-      const FORMPREE_ENDPOINT = 'https://formspree.io/f/mpqjaadj';
+      const FORMPREE_ENDPOINT = 'https://formspree.io/f/xaqdlloz';
 
       const response = await fetch(FORMPREE_ENDPOINT, {
         method: 'POST',
@@ -694,7 +694,7 @@ function App() {
                 className="popup-request-form smooth-reveal" 
                 onSubmit={handleFormSubmit}
                 method="POST"
-                action="https://formspree.io/f/mpqjaadj"
+                action="https://formspree.io/f/xaqdlloz"
               >
                 <div className="form-row">
                   <div className="form-group">
