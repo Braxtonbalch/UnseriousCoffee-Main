@@ -687,26 +687,6 @@ function App() {
             </div>
           </section>
 
-          {/* What We Serve */}
-          <section className="popups-section">
-            <div className="container">
-              <div className="section-header smooth-reveal">
-                <h2>What We Serve</h2>
-                <p className="section-subtitle">Quality coffee, zero pretension</p>
-              </div>
-              <div className="popup-menu-list smooth-reveal">
-                <ul className="menu-list">
-                  <li>Espresso</li>
-                  <li>Americano</li>
-                  <li>Latte</li>
-                  <li>Cortado</li>
-                  <li>Tea</li>
-                </ul>
-                <p className="menu-note">Menu can be tailored to the event.</p>
-              </div>
-            </div>
-          </section>
-
           {/* What You Provide */}
           <section className="popups-section alt-bg">
             <div className="container">
