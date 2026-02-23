@@ -23,7 +23,7 @@ function App() {
 
   const defaultContent = {
     heroTagline: "The grind sucks. Our coffee doesn't.",
-    heroLocation: "Opening day: SOON!!!",
+    heroLocation: "",
     elevatorLead:
       "Unserious Coffee exists to give hard-working people a much-needed pause from the daily grind through great coffee, uplifting beats, and a vibe that reminds you not to take life too seriously. We're here for the overworked, the burnt out, and the under caffeinated serving hot espresso, connection, and killer vibes in a place that reminds you to take a minute for yourself.",
     elevatorSecond:
