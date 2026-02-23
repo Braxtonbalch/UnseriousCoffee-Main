@@ -803,14 +803,13 @@ function App() {
                     </select>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="dateTime">Date/Time *</label>
+                    <label htmlFor="dateTime">Date &amp; Time *</label>
                     <input
-                      type="text"
+                      type="datetime-local"
                       id="dateTime"
                       name="event_date"
                       value={formData.dateTime}
                       onChange={handleInputChange}
-                      placeholder="e.g., March 15, 2024, 10:00 AM - 2:00 PM"
                       required
                       aria-required="true"
                     />
