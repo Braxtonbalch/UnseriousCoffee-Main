@@ -142,100 +142,39 @@ function App() {
 
     setFormStatus('loading');
 
-    // Prepare FormData for Formspree
-    const formDataToSubmit = new FormData();
-    formDataToSubmit.append('name', formData.name);
-    formDataToSubmit.append('email', formData.email); // Required for Formspree autoresponse
-    if (formData.organization) formDataToSubmit.append('organization', formData.organization);
-    if (formData.phone) formDataToSubmit.append('phone', formData.phone);
-    formDataToSubmit.append('event_type', formData.eventType);
-    formDataToSubmit.append('event_date', formData.dateTime);
-    formDataToSubmit.append('location', formData.location);
-    if (formData.attendance) formDataToSubmit.append('attendance', formData.attendance);
-    if (formData.notes) formDataToSubmit.append('message', formData.notes);
+    // Send via email directly to unseriouscoffee@gmail.com
+    const subject = encodeURIComponent(`Pop-Up Request: ${formData.eventType || 'Pop-Up Inquiry'}`);
+    const body = encodeURIComponent(
+      `Pop-Up Request Form Submission\n\n` +
+      `Name: ${formData.name}\n` +
+      `Organization/Brokerage/Business: ${formData.organization || 'N/A'}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone || 'N/A'}\n` +
+      `Event Type: ${formData.eventType || 'N/A'}\n` +
+      `Date/Time: ${formData.dateTime || 'N/A'}\n` +
+      `Location: ${formData.location}\n` +
+      `Expected Attendance: ${formData.attendance || 'N/A'}\n` +
+      `Notes: ${formData.notes || 'N/A'}`
+    );
 
-    try {
-      const FORMPREE_ENDPOINT = 'https://formspree.io/f/mpqjaadj';
-      
-      // Check if endpoint is still placeholder - use mailto fallback
-      if (FORMPREE_ENDPOINT.includes('YOUR_FORM_ID')) {
-        // Fallback to mailto if Formspree not configured
-        const subject = encodeURIComponent(`Pop-Up Request: ${formData.eventType}`);
-        const body = encodeURIComponent(
-          `Pop-Up Request Form Submission\n\n` +
-          `Name: ${formData.name}\n` +
-          `Organization/Brokerage/Business: ${formData.organization || 'N/A'}\n` +
-          `Email: ${formData.email}\n` +
-          `Phone: ${formData.phone || 'N/A'}\n` +
-          `Event Type: ${formData.eventType}\n` +
-          `Date/Time: ${formData.dateTime}\n` +
-          `Location: ${formData.location}\n` +
-          `Expected Attendance: ${formData.attendance || 'N/A'}\n` +
-          `Notes: ${formData.notes || 'N/A'}`
-        );
-        
-        window.location.href = `mailto:unseriouscoffee@gmail.com?subject=${subject}&body=${body}`;
-        setFormStatus('success');
-        // Clear form on success
-        setFormData({
-          name: '',
-          organization: '',
-          email: '',
-          phone: '',
-          eventType: '',
-          dateTime: '',
-          location: '',
-          attendance: '',
-          notes: ''
-        });
-        // Clear success message after 10 seconds
-        setTimeout(() => {
-          setFormStatus(prev => prev === 'success' ? 'idle' : prev);
-        }, 10000);
-        return;
-      }
-      
-      const response = await fetch(FORMPREE_ENDPOINT, {
-        method: 'POST',
-        body: formDataToSubmit,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        setFormStatus('success');
-        // Clear form on success
-        setFormData({
-          name: '',
-          organization: '',
-          email: '',
-          phone: '',
-          eventType: '',
-          dateTime: '',
-          location: '',
-          attendance: '',
-          notes: ''
-        });
-        // Clear success message after 10 seconds
-        setTimeout(() => {
-          setFormStatus(prev => prev === 'success' ? 'idle' : prev);
-        }, 10000);
-      } else {
-        setFormStatus('error');
-        // Clear error message after 5 seconds
-        setTimeout(() => {
-          setFormStatus(prev => prev === 'error' ? 'idle' : prev);
-        }, 5000);
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      setFormStatus('error');
-      // Clear error message after 5 seconds
-      setTimeout(() => {
-        setFormStatus(prev => prev === 'error' ? 'idle' : prev);
-      }, 5000);
-    }
+    window.location.href = `mailto:unseriouscoffee@gmail.com?subject=${subject}&body=${body}`;
+    setFormStatus('success');
+    // Clear form on success
+    setFormData({
+      name: '',
+      organization: '',
+      email: '',
+      phone: '',
+      eventType: '',
+      dateTime: '',
+      location: '',
+      attendance: '',
+      notes: ''
+    });
+    // Clear success message after 10 seconds
+    setTimeout(() => {
+      setFormStatus(prev => prev === 'success' ? 'idle' : prev);
+    }, 10000);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
