@@ -367,7 +367,7 @@ function App() {
                 {content.heroLocation}
               </p>
               <div className="hero-buttons">
-                <button className="cta-button primary" onClick={() => setCurrentPage('about')}>
+                <button className="cta-button primary" onClick={() => setCurrentPage('pop-ups')}>
                   BOOK A POP-UP
                 </button>
                 <button className="cta-button secondary" onClick={() => { setCurrentPage('home'); setTimeout(() => document.getElementById('support')?.scrollIntoView({ behavior: 'smooth' }), 150); }}>
