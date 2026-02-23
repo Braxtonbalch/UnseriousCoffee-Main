@@ -603,9 +603,16 @@ function App() {
                   <button className="cta-button primary" onClick={() => document.getElementById('popup-form')?.scrollIntoView({ behavior: 'smooth' })}>
                     Request a Pop-Up
                   </button>
-                  <a href="https://www.instagram.com/unseriouscoffee/" target="_blank" rel="noopener noreferrer" className="cta-button secondary">
+                  <button
+                    type="button"
+                    className="cta-button secondary"
+                    onClick={() => {
+                      setCurrentPage('home');
+                      setTimeout(() => document.getElementById('support')?.scrollIntoView({ behavior: 'smooth' }), 150);
+                    }}
+                  >
                     Follow Us
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
