@@ -554,7 +554,7 @@ function App() {
           <section className="popups-hero">
             <div className="container">
               <div className="popups-hero-content smooth-reveal">
-                <div className="free-badge">FREE for now</div>
+                <div className="free-badge">NOW BOOKING</div>
                 <h1>Pop-Ups</h1>
                 <h2 className="popups-headline">We'll bring the espresso, You bring the people!</h2>
                 <p className="popups-subheadline">
@@ -667,14 +667,14 @@ function App() {
             </div>
           </section>
 
-          {/* Free For Now */}
+          {/* Pricing Note */}
           <section className="popups-section">
             <div className="container">
               <div className="free-for-now-content smooth-reveal">
-                <h2>Free For Now</h2>
+                <h2>Pricing & Availability</h2>
                 <p>
-                  Pop-ups are currently <strong>FREE</strong> while we build community partnerships. 
-                  The only ask is helping spread the name (social tag/mention + letting guests know it's UNSERIOUS COFFEE).
+                  Pop-up pricing depends on the event type, size, and setup. 
+                  Share the details and we&apos;ll follow up with a custom quote.
                 </p>
                 <p className="disclaimer">
                   <small>Availability is limited; travel/time constraints may apply.</small>
@@ -845,8 +845,8 @@ function App() {
               <div className="faq-accordion smooth-reveal">
                 {[
                   {
-                    question: 'Is it really free?',
-                    answer: 'Yes! Pop-ups are currently FREE while we build community partnerships. The only ask is helping spread the name UNSERIOUS COFFEE through social tags/mentions and letting guests know who\'s serving the coffee.'
+                    question: 'How much does a pop-up cost?',
+                    answer: 'Pricing depends on the event type, size, and setup. Share your details and we\'ll follow up with a quote that fits your vibe and budget.'
                   },
                   {
                     question: 'What kinds of events do you do?',
