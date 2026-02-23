@@ -306,9 +306,6 @@ function App() {
       {/* Navigation */}
       <nav ref={headerRef} className="main-nav">
         <div className="nav-container">
-          <button className="nav-logo" onClick={() => setCurrentPage('home')}>
-            <img src="/unserious-coffee-logo.png" alt="Unserious Coffee" className="nav-logo-image" />
-          </button>
           <div className="nav-links">
             <button 
               className={`nav-link ${currentPage === 'home' ? 'active' : ''}`}
