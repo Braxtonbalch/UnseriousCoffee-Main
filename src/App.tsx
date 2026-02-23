@@ -953,7 +953,7 @@ function App() {
               <p>A dream in the making since 2024</p>
             </div>
             <div className="footer-section">
-              <h4>Location</h4>
+              <h4>Locations</h4>
               <ul className="footer-locations">
                 {content.serviceAreas.map((area) => (
                   <li key={area}>{area}</li>
