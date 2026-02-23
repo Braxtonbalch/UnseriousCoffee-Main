@@ -254,15 +254,14 @@ function App() {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-  const schedule = [
-    { day: 'Monday', location: 'Downtown Panama City', time: '7:00 AM - 2:00 PM', status: 'Open' },
-    { day: 'Tuesday', location: 'St. Andrews', time: '7:00 AM - 2:00 PM', status: 'Open' },
-    { day: 'Wednesday', location: 'Panama City Beach', time: '7:00 AM - 2:00 PM', status: 'Open' },
-    { day: 'Thursday', location: 'Lynn Haven', time: '7:00 AM - 2:00 PM', status: 'Open' },
-    { day: 'Friday', location: 'Downtown Panama City', time: '7:00 AM - 3:00 PM', status: 'Open' },
-    { day: 'Saturday', location: 'Pier Park', time: '8:00 AM - 1:00 PM', status: 'Open' },
-    { day: 'Sunday', location: 'St. Andrews', time: '9:00 AM - 1:00 PM', status: 'Open' },
-  ];
+  // Update this object whenever you have a new pop-up booked
+  const nextPopUp = {
+    location: 'TBD',
+    date: 'TBD',
+    time: 'TBD',
+    eventType: 'TBD',
+    note: 'Check back here or follow us on social for the latest.',
+  };
 
   const merchandiseItems = [
     { 
@@ -479,30 +478,36 @@ function App() {
         <section className="find-us-page">
           <div className="container">
             <div className="section-header smooth-reveal">
-              <h2>Find Our Trailer</h2>
-              <p className="section-subtitle">We're mobile, we're caffeinated, we're here for you</p>
+              <h2>Find Us</h2>
+              <p className="section-subtitle">
+                Unserious Coffee is a mobile pop-up coffee shop serving Panama City and surrounding areas.
+              </p>
             </div>
             
             <div className="schedule-container">
               <div className="schedule-intro">
-                <p>Our coffee trailer roams around Panama City like a caffeinated nomad. Check where we'll be this week (subject to change because, you know, life happens).</p>
+                <p>
+                  We're a mobile pop-up coffee shop. Check here to see where we're brewing next.
+                </p>
               </div>
               
               <div className="schedule-grid smooth-reveal-stagger">
-                {schedule.map((item, index) => (
-                  <div key={index} className="schedule-item">
-                    <div className="schedule-day">{item.day}</div>
-                    <div className="schedule-location">{item.location}</div>
-                    <div className="schedule-time">{item.time}</div>
-                    <div className={`schedule-status ${item.status.toLowerCase()}`}>
-                      {item.status}
-                    </div>
+                <div className="schedule-item">
+                  <div className="schedule-day">Upcoming Pop-Up</div>
+                  <div className="schedule-location">{nextPopUp.location}</div>
+                  <div className="schedule-time">{nextPopUp.date}</div>
+                  <div className="schedule-time">{nextPopUp.time}</div>
+                  <div className="schedule-status special">
+                    {nextPopUp.eventType}
                   </div>
-                ))}
+                </div>
               </div>
 
               <div className="schedule-note">
-                <p>⚠️ <strong>Pro tip:</strong> Follow us on social media for real-time updates. Sometimes we show up early, sometimes we're fashionably late. That's just how we roll.</p>
+                <p>
+                  ⚠️ <strong>Stay updated:</strong> Pop-up details can change. Follow us on social media for real-time updates and new locations.
+                </p>
+                {nextPopUp.note && <p>{nextPopUp.note}</p>}
               </div>
             </div>
           </div>
