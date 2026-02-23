@@ -25,7 +25,7 @@ function App() {
     heroTagline: "The grind sucks. Our coffee doesn't.",
     heroLocation: "",
     elevatorLead:
-      "Unserious Coffee exists to give hard-working people a much-needed pause from the daily grind through great coffee, uplifting beats, and a vibe that reminds you not to take life too seriously. We're here for the overworked, the burnt out, and the under caffeinated serving hot espresso, connection, and killer vibes in a place that reminds you to take a minute for yourself.",
+      "Unserious Coffee is a mobile pop-up coffee experience designed to elevate events and bring people together. We partner with real estate agents, brokers, small businesses, markets, and community events to serve fresh, handcrafted hot and iced coffee on-site. Whether it's an open house, boutique launch, corporate gathering, or local event, we tailor the menu and setup to fit your vibe—creating a welcoming atmosphere that helps you connect with your guests in a memorable way.",
     elevatorSecond:
       "Our mission is simple: serve serious coffee with unserious vibes. We believe coffee should be cheap in price but not in taste. After traveling around the world and tasting some of the best coffee, we know that exceptional quality doesn't have to break the bank. We believe coffee is always best paired with bangin music and great friends - because the perfect brew deserves the perfect vibe. And hey, if you've got an uptight boss, bring them here and tell them to chill out - our coffee has that effect on people.",
     elevatorThird:
