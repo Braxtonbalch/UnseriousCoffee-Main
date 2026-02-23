@@ -28,6 +28,8 @@ function App() {
       "Unserious Coffee is a mobile pop-up coffee experience designed to elevate events and bring people together. We partner with real estate agents, brokers, small businesses, markets, and community events to serve fresh, handcrafted hot and iced coffee on-site. Whether it's an open house, boutique launch, corporate gathering, or local event, we tailor the menu and setup to fit your vibe—creating a welcoming atmosphere that helps you connect with your guests in a memorable way.",
     elevatorSecond:
       "We serve serious coffee with unserious vibes. Great coffee shouldn't cost a fortune, after tasting some of the best coffee around the world, we learned that quality and affordability can go hand in hand. Add good music and great people, and you've got the perfect cup. And if your boss needs to relax… bring them by — we've seen coffee work miracles.",
+    elevatorThird:
+      "Serving Panama City, Florida - a place where the coffee is strong, the vibes are chill, and the community is everything. Life's too short for bad coffee and boring conversations.",
     serviceAreas: [
       'Callaway, FL',
       'Panama City, FL',
@@ -398,11 +400,9 @@ function App() {
                   <p className="elevator-second">
                     {content.elevatorSecond}
                   </p>
-                  <ul className="elevator-locations">
-                    {content.serviceAreas.map((area) => (
-                      <li key={area}>{area}</li>
-                    ))}
-                  </ul>
+                  <p className="elevator-third">
+                    {content.elevatorThird}
+                  </p>
                 </div>
               </div>
             </div>
@@ -954,7 +954,11 @@ function App() {
             </div>
             <div className="footer-section">
               <h4>Location</h4>
-              <p>📍 Panama City, FL (Coming Soon)</p>
+              <ul className="footer-locations">
+                {content.serviceAreas.map((area) => (
+                  <li key={area}>{area}</li>
+                ))}
+              </ul>
             </div>
             <div className="footer-section">
               <h4>Legal Stuff</h4>
