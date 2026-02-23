@@ -370,8 +370,8 @@ function App() {
                 <button className="cta-button primary" onClick={() => setCurrentPage('about')}>
                   BOOK A POP-UP
                 </button>
-                <button className="cta-button secondary" onClick={() => setCurrentPage('find-us')}>
-                  Find Our Trailer
+                <button className="cta-button secondary" onClick={() => { setCurrentPage('home'); setTimeout(() => document.getElementById('support')?.scrollIntoView({ behavior: 'smooth' }), 150); }}>
+                  SUPPORT US
                 </button>
               </div>
             </div>
@@ -401,7 +401,7 @@ function App() {
           </section>
 
           {/* Social Media Section */}
-          <section className="social-section">
+          <section id="support" className="social-section">
             <div className="container">
               <div className="section-header smooth-reveal">
                 <h2>Connect With Us</h2>
