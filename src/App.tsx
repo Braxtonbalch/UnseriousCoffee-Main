@@ -445,8 +445,14 @@ function App() {
                     >
                       <img src="/Spotify QR code.png" alt="Spotify QR Code" className="social-qr-code" />
                     </a>
-                    <a href="#" className="social-link" aria-label="Follow us on TikTok">
-                      <span className="social-icon">🎵</span>
+                    <a 
+                      href="https://www.tiktok.com/@unseriouscoffee" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="social-link"
+                      aria-label="Follow us on TikTok"
+                    >
+                      <img src="/unseriouscoffee_tiktok_qr_actual_logo.png" alt="TikTok QR Code" className="social-qr-code" />
                     </a>
                   </div>
                   <div className="email-contact">
