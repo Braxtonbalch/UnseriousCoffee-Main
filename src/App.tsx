@@ -823,6 +823,7 @@ function App() {
                     name="location"
                     value={formData.location}
                     onChange={handleInputChange}
+                    placeholder="e.g., 123 Main St, Panama City, FL 32401"
                     required
                     aria-required="true"
                   />
