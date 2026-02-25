@@ -218,10 +218,10 @@ function App() {
 
   // Update this object whenever you have a new pop-up booked
   const nextPopUp = {
-    location: 'LOCATION:',
-    date: 'DATE:',
-    time: 'TIME:',
-    eventType: 'EVENT:',
+    location: 'LOCATION: 1202 Maryland Ave. Lynn Haven, FL 32444',
+    date: 'DATE: 28 February (Saturday)',
+    time: 'TIME: 11:00 - 2:00',
+    eventType: 'EVENT: Open House',
     note: 'Check back here or follow us on social for the latest.',
   };
 
