@@ -218,7 +218,7 @@ function App() {
 
   // Update this object whenever you have a new pop-up booked
   const nextPopUp = {
-    location: 'LOCATION: 1202 Maryland Ave. Lynn Haven, FL 32444',
+    location: '1202 Maryland Ave. Lynn Haven, FL 32444',
     date: 'DATE: 28 February (Saturday)',
     time: 'TIME: 11:00 - 2:00',
     eventType: 'EVENT: Open House',
@@ -456,7 +456,15 @@ function App() {
               <div className="schedule-grid smooth-reveal-stagger">
                 <div className="schedule-item">
                   <div className="schedule-day">Upcoming Pop-Up</div>
-                  <div className="schedule-location">{nextPopUp.location}</div>
+                  <div className="schedule-location">
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(nextPopUp.location)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      LOCATION: {nextPopUp.location}
+                    </a>
+                  </div>
                   <div className="schedule-time">{nextPopUp.date}</div>
                   <div className="schedule-time">{nextPopUp.time}</div>
                   <div className="schedule-status special">
